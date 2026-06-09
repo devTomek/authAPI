@@ -8,22 +8,23 @@ Authentication API built with Express.js, Node.js, and TypeScript
 - pnpm 8+
 - Docker & Docker Compose (optional)
 
-## Installation
+## Configuration
 
-### Docker
+**Note:** Remember to configure environment variables for deployment. If you have questions about the setup, contact tomasz.chybzinski@gmail.com
 
-Build and run with Docker Compose:
+### Docker (Recommended)
+
+1. Build and run with Docker Compose:
 
 ```bash
 docker-compose up
 ```
 
-Or build and run manually:
+This will start:
 
-```bash
-docker build -t auth-api .
-docker run -p 3000:3000 auth-api
-```
+- **API** — http://localhost:3000
+- **PostgreSQL** — localhost:5432
+- **pgAdmin** — http://localhost:5050
 
 ### Local Development
 
@@ -50,14 +51,3 @@ The API will be available at `http://localhost:3000`
 ## API Endpoints
 
 - `GET /` - Hello World endpoint
-
-## Environment Variables
-
-Copy `.env.example` to `.env` and configure:
-
-```bash
-cp .env.example .env
-```
-
-- `PORT` - Server port (default: 3000)
-- `NODE_ENV` - Environment mode (development/production)
