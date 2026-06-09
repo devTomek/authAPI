@@ -9,3 +9,6 @@ dist/
 build/
 *.js.map
 .vscode
+.cursor/
+
+/src/generated/prisma

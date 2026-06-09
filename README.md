@@ -4,7 +4,7 @@ Authentication API built with Express.js, Node.js, and TypeScript
 
 ## Prerequisites
 
-- Node.js 26+
+- Node.js 24+ (LTS)
 - pnpm 8+
 - Docker & Docker Compose (optional)
 

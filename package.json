@@ -2,11 +2,14 @@
   "name": "auth-api",
   "version": "1.0.0",
   "description": "Authentication API built with Express.js",
+  "type": "module",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
+    "build": "prisma generate && tsc",
     "start": "node dist/server.js",
-    "dev": "nodemon --exec ts-node src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "migrate:dev": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy"
   },
   "keywords": [
     "auth",
@@ -16,15 +19,21 @@
   "author": "Tomasz Chybzinski",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "pg": "^8.11.3"
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.21.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.0.0",
-    "@types/pg": "^8.11.6",
-    "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.20.0",
+    "prisma": "^7.8.0",
+    "tsx": "^4.22.4",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }
