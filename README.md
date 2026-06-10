@@ -39,5 +39,8 @@ docker compose up --build
 
 ## API Endpoints
 
-- `GET /` - Hello World endpoint
+- `GET /` - Healthcheck
+- `GET /users` - Get all users
 - `POST /users` - Create a user
+- `PATCH /users/:id` - Update a user
+- `DELETE /users/:id` - Delete a user
