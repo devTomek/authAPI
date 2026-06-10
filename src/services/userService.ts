@@ -2,15 +2,22 @@ import bcrypt from "bcrypt";
 import { prisma } from "../lib/db.js";
 import type { CreateUserInput } from "../schemas/createUser.js";
 
-type CreatedUser = {
-  id: number;
-  email: string;
-  createdAt: Date;
-};
+const userSelect = {
+  id: true,
+  email: true,
+  createdAt: true,
+} as const;
 
-export async function createUser(
-  input: CreateUserInput,
-): Promise<CreatedUser | undefined> {
+export async function getUsers() {
+  return prisma.user.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    select: userSelect,
+  });
+}
+
+export async function createUser(input: CreateUserInput) {
   const hashedPassword = await bcrypt.hash(input.password, 12);
 
   try {
@@ -19,11 +26,7 @@ export async function createUser(
         email: input.email,
         password: hashedPassword,
       },
-      select: {
-        id: true,
-        email: true,
-        createdAt: true,
-      },
+      select: userSelect,
     });
 
     return user;
