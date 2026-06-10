@@ -11,14 +11,15 @@ export async function createUser(req: Request, res: Response) {
   }
 
   try {
-    const result = await userService.createUser(parsed.data);
+    const user = await userService.createUser(parsed.data);
 
-    if (!result.ok) {
+    if (!user) {
+      console.error("Email already registered");
       res.status(409).json({ error: "Email already registered" });
       return;
     }
 
-    res.status(201).json(result.user);
+    res.status(201).json(user);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

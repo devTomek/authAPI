@@ -1,16 +1,18 @@
 import "dotenv/config";
 import express, { Application, Request, Response } from "express";
+import { requestInfo } from "./middlewares/requestInfo.js";
 import usersRouter from "./routes/users.js";
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || "0.0.0.0";
 
+app.use(requestInfo);
 app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
   res.json({
-    message: "Hello World!",
+    message: "It's  working!",
   });
 });
 
