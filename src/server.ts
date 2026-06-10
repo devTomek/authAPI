@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express, { Application, Request, Response } from "express";
 import { requestInfo } from "./middlewares/requestInfo.js";
+import authRouter from "./routes/auth.js";
 import usersRouter from "./routes/users.js";
 
 const app: Application = express();
@@ -17,6 +18,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/users", usersRouter);
+app.use("/auth", authRouter);
 
 app.listen(Number(PORT), HOST, () => {
   console.log(`Server is running on http://${HOST}:${PORT}`);

@@ -40,6 +40,7 @@ docker compose up --build
 ## API Endpoints
 
 - `GET /` - Healthcheck
+- `POST /auth/login` - Login and receive a JWT access token
 - `GET /users` - Get all users
 - `POST /users` - Create a user
 - `PATCH /users/:id` - Update a user
