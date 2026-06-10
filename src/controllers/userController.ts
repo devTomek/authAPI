@@ -81,3 +81,32 @@ export async function updateUser(req: Request, res: Response) {
     res.status(500).json({ error: "Internal server error" });
   }
 }
+
+export async function deleteUser(req: Request, res: Response) {
+  const id = Number(req.params.id);
+
+  if (!Number.isInteger(id) || id < 1) {
+    const errorMessage = "Invalid user id";
+
+    console.error(errorMessage);
+    res.status(400).json({ error: errorMessage });
+    return;
+  }
+
+  try {
+    const user = await userService.deleteUser(id);
+
+    if (!user) {
+      const errorMessage = "Unable to delete user";
+
+      console.error(errorMessage);
+      res.status(400).json({ error: errorMessage });
+      return;
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}

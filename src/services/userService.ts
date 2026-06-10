@@ -86,3 +86,28 @@ export async function updateUser(id: number, input: UpdateUserInput) {
     throw error;
   }
 }
+
+export async function deleteUser(id: number) {
+  try {
+    const user = await prisma.user.delete({
+      where: {
+        id,
+      },
+      select,
+    });
+
+    return user;
+  } catch (error) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "P2025"
+    ) {
+      console.error("User not found");
+      return undefined;
+    }
+
+    throw error;
+  }
+}
