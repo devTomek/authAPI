@@ -4,6 +4,7 @@ import usersRouter from "./routes/users.js";
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || "0.0.0.0";
 
 app.use(express.json());
 
@@ -15,9 +16,8 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/users", usersRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log(`http://localhost:${PORT}`);
+app.listen(Number(PORT), HOST, () => {
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 });
 
 export default app;
