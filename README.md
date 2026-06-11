@@ -1,4 +1,6 @@
-# Auth API
+# Auth API 🔐
+
+<img src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" alt="API demo" width="200">
 
 CRUD and Authentication API in Service-Controller Architecture, built with:
 
@@ -9,25 +11,87 @@ CRUD and Authentication API in Service-Controller Architecture, built with:
 - Docker
 - pgAdmin
 
-Backend deployed: https://authapi-2and.onrender.com/
+Backend deployed 🚀 https://render.com/  
+DB deployed 🗄️ https://neon.com/
 
-DB deployed: https://neon.com/
+Application can sleep so first enter will take some time to wake it up 😴
 
-## How it works
+Please use Postman, Frontend in progress 🛠️
 
-1. Create a user
-2. Login with the user (JWT generates)
-3. Use other endpoints (header `Authorization: Bearer <token>`)
+## Unprotected Routes 🔓
 
-## Prerequisites
+Healthcheck ✅  
+GET https://authapi-2and.onrender.com/
+
+Get Users 👥  
+GET https://authapi-2and.onrender.com/users/
+
+Create User ➕  
+POST https://authapi-2and.onrender.com/users/
+
+```json
+{
+  "email": "a@example.com",
+  "password": "a"
+}
+```
+
+Update User ✏️  
+PATCH https://authapi-2and.onrender.com/users/:id
+
+```json
+{
+  "email": "updated@example.com",
+  "password": "new-password"
+}
+```
+
+Delete User 🗑️  
+DELETE https://authapi-2and.onrender.com/users/:id
+
+Login 🔑  
+POST https://authapi-2and.onrender.com/auth/login
+
+```json
+{
+  "email": "a@example.com",
+  "password": "a"
+}
+```
+
+_\* unprotected because this is a demo API_
+
+## Protected Routes 🔒
+
+Use login token in header 🪪
+
+```txt
+Authorization: Bearer YOUR_TOKEN
+```
+
+Get Protected Users 👥  
+GET https://authapi-2and.onrender.com/auth/users/
+
+Update User ✏️  
+PATCH https://authapi-2and.onrender.com/auth/users/:id
+
+```json
+{
+  "email": "updated@example.com",
+  "password": "new-password"
+}
+```
+
+Delete User 🗑️  
+DELETE https://authapi-2and.onrender.com/auth/users/:id
+
+## Prerequisites 📦
 
 - Node.js 24+
 - pnpm 8+
 - Docker & Docker Compose
 
-### Docker Development (hot reload)
-
-Start the full stack with file watching. Code changes in `src/` restart the API automatically:
+## Docker Development (hot reload) 🐳
 
 ```bash
 pnpm dev
@@ -38,27 +102,3 @@ This starts:
 - **API** - http://localhost:3000 (tsx watch, source mounted)
 - **PostgreSQL** - localhost:5432
 - **pgAdmin** - http://localhost:5050
-
-Rebuild the dev image only when `package.json` or `pnpm-lock.yaml` changes. If dependencies change and the container still sees old packages, recreate the `node_modules` volume:
-
-```bash
-docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v
-pnpm dev
-```
-
-### Docker Production
-
-Build and run the production image (compiled TypeScript, no hot reload):
-
-```bash
-docker compose up --build
-```
-
-## API Endpoints
-
-- `GET /` - Healthcheck
-- `POST /auth/login` - Login and receive a JWT access token
-- `GET /users` - Get all users
-- `POST /users` - Create a user
-- `PATCH /users/:id` - Update a user
-- `DELETE /users/:id` - Delete a user
