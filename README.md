@@ -13,7 +13,7 @@ CRUD and Authentication API in Service-Controller Architecture, built with:
 
 1. Create a user
 2. Login with the user (JWT generates)
-3. Use other endpoints (header Authorization: JWT)
+3. Use other endpoints (header `Authorization: Bearer <token>`)
 
 ## Prerequisites
 
