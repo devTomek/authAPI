@@ -1,10 +1,23 @@
 # Auth API
 
-CRUD and Authentication API in Service-Controller Architecture, built with Express.js, Node.js, TypeScript, Prisma, Docker and pgAdmin.
+CRUD and Authentication API in Service-Controller Architecture, built with:
+
+- Express.js
+- Node.js
+- TypeScript
+- Prisma
+- Docker
+- pgAdmin
+
+## How it works
+
+1. Create a user
+2. Login with the user (JWT generates)
+3. Use other endpoints (header Authorization: JWT)
 
 ## Prerequisites
 
-- Node.js 24+ (LTS)
+- Node.js 24+
 - pnpm 8+
 - Docker & Docker Compose
 
