@@ -9,6 +9,10 @@ CRUD and Authentication API in Service-Controller Architecture, built with:
 - Docker
 - pgAdmin
 
+Backend deployed: https://authapi-2and.onrender.com/
+
+DB deployed: https://neon.com/
+
 ## How it works
 
 1. Create a user
