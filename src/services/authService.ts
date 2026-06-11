@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { SignJWT } from "jose";
 import { prisma } from "../lib/db.js";
 import type { LoginInput } from "../schemas/login.js";
+import { getJwtSecret } from "../utils/getJwtSecret.js";
 
 const select = {
   id: true,
@@ -10,16 +11,6 @@ const select = {
   createdAt: true,
   updatedAt: true,
 };
-
-function getJwtSecret() {
-  const secret = process.env.JWT_SECRET;
-
-  if (!secret) {
-    throw new Error("JWT_SECRET is not configured");
-  }
-
-  return new TextEncoder().encode(secret);
-}
 
 export async function login(input: LoginInput) {
   const user = await prisma.user.findUnique({
